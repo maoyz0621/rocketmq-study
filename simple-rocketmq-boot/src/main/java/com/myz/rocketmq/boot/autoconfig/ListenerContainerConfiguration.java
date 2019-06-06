@@ -26,6 +26,10 @@ import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * 消费监听
+ *
+ * https://blog.csdn.net/bb23417274/article/details/89448214
+ *
+ * 该接口在bean实例化完成,包括依赖注入完成,BeadPostProcess,InitializingBean,initMethod等等全部完成后,执行;可以理解为bean的收尾操作;仅适用于单例对象
  */
 @Configuration
 public class ListenerContainerConfiguration implements ApplicationContextAware, SmartInitializingSingleton {

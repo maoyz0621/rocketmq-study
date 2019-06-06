@@ -30,6 +30,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
+/**
+ * https://www.jianshu.com/p/7b8f2a97c8f5  当Spring容器加载所有bean并完成初始化之后，会接着回调实现该接口的类中对应的方法（start()方法）。
+ */
 public class DefaultRocketMQListenerContainer implements RocketMQListenerContainer, InitializingBean, SmartLifecycle, ApplicationContextAware {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DefaultRocketMQListenerContainer.class);
