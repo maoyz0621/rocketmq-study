@@ -11,6 +11,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class A {
 
     public static void main(String[] args) throws Exception {
+        Double a = 0.01d;
+        System.out.println(a.toString() instanceof String);
 //        main1();
 //        main2();
 //         main4();
@@ -41,7 +43,7 @@ public class A {
 
         // main6();
 
-        // main7();
+        main7();
 
         // https://wizardforcel.gitbooks.io/java8-tutorials/content/Java%208%20%E5%B9%B6%E5%8F%91%E6%95%99%E7%A8%8B%20Threads%20%E5%92%8C%20Executors.html
         // https://blog.csdn.net/caihaijiang/article/details/35552859
@@ -50,53 +52,53 @@ public class A {
         // https://juejin.im/entry/5c2598686fb9a049d975454d
         // 关闭线程 https://my.oschina.net/u/3768341/blog/1842994
 
-        System.out.println(new Date());
-        ExecutorService executorService = Executors.newFixedThreadPool(20);
-        try {
-            for (int i = 0; i < 20; i++) {
-                executorService.execute(() -> {
-                    try {
-                        Thread.sleep(3000);
-                        System.out.println(Thread.currentThread().getName() + " ***********************");
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                });
-
-            }
-
-            executorService.execute(() -> {
-                try {
-                    Thread.sleep(3000);
-                    System.out.println(Thread.currentThread().getName() + " ------------------------------");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            });
-        } finally {
-            System.out.println(new Date());
-            /* 通常放在execute后面。如果调用 了这个方法，一方面，表明当前线程池已不再接收新添加的线程，新添加的线程会被拒绝执行。
-            另一方面，表明当所有线程执行完毕时，回收线程池的资源。
-            注意，它不会马上关闭线程池！ */
-            try {
-                System.out.println("attempt to shutdown executor");
-                executorService.shutdown();
-                executorService.awaitTermination(50, TimeUnit.SECONDS);
-            } catch (Exception e) {
-                System.err.println("tasks interrupted");
-            } finally {
-                if (!executorService.isTerminated()) {
-                    System.err.println("cancel non-finished tasks");
-                }
-                executorService.shutdownNow();
-                System.out.println("shutdown finished");
-
-            }
-
-            /*不管当前有没有线程在执行，马上关闭线程池！这个方法要小心使用，要不可能会引起系统数据异常！*/
-            // executorService.shutdownNow();
-            System.out.println(Thread.currentThread().getName() + " shutdown()***********************");
-        }
+        // System.out.println(new Date());
+        // ExecutorService executorService = Executors.newFixedThreadPool(20);
+        // try {
+        //     for (int i = 0; i < 20; i++) {
+        //         executorService.execute(() -> {
+        //             try {
+        //                 Thread.sleep(3000);
+        //                 System.out.println(Thread.currentThread().getName() + " ***********************");
+        //             } catch (InterruptedException e) {
+        //                 e.printStackTrace();
+        //             }
+        //         });
+        //
+        //     }
+        //
+        //     executorService.execute(() -> {
+        //         try {
+        //             Thread.sleep(3000);
+        //             System.out.println(Thread.currentThread().getName() + " ------------------------------");
+        //         } catch (InterruptedException e) {
+        //             e.printStackTrace();
+        //         }
+        //     });
+        // } finally {
+        //     System.out.println(new Date());
+        //     /* 通常放在execute后面。如果调用 了这个方法，一方面，表明当前线程池已不再接收新添加的线程，新添加的线程会被拒绝执行。
+        //     另一方面，表明当所有线程执行完毕时，回收线程池的资源。
+        //     注意，它不会马上关闭线程池！ */
+        //     try {
+        //         System.out.println("attempt to shutdown executor");
+        //         executorService.shutdown();
+        //         executorService.awaitTermination(50, TimeUnit.SECONDS);
+        //     } catch (Exception e) {
+        //         System.err.println("tasks interrupted");
+        //     } finally {
+        //         if (!executorService.isTerminated()) {
+        //             System.err.println("cancel non-finished tasks");
+        //         }
+        //         executorService.shutdownNow();
+        //         System.out.println("shutdown finished");
+        //
+        //     }
+        //
+        //     /*不管当前有没有线程在执行，马上关闭线程池！这个方法要小心使用，要不可能会引起系统数据异常！*/
+        //     // executorService.shutdownNow();
+        //     System.out.println(Thread.currentThread().getName() + " shutdown()***********************");
+        // }
     }
 
     public static void main7() {
@@ -111,7 +113,7 @@ public class A {
         System.out.println(a / b);
 
         // BigDecimal()  传入String类型才能精确计算
-        BigDecimal a1 = new BigDecimal("0.03");
+        BigDecimal a1 = new BigDecimal(0.03D + "");
         BigDecimal b1 = new BigDecimal("0.02");
         System.out.println(b1.add(a1));
         // 0.01
